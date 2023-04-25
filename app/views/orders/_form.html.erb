@@ -1,0 +1,29 @@
+<div class="container w-50">
+  <%= form_with model: order, url: url do |form| %>
+    <%= render "error" %>
+    <div class="row py-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :quantity, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.number_field :quantity, min: 0, class: "form-control" %>
+      </div>
+    </div>
+
+    <%= form.hidden_field :product_id, value: params[:product_id] %>
+    <%= form.hidden_field :user_id, value: user_id %>
+
+    <div class="row py-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :status, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.select :status, Order::statuses.keys.map{ |key| [key, key] }, { include_blank: "Select Option", selected: @order.status } , {class: "form-select form-select-sm me-3"} %>
+      </div>
+    </div>
+
+    <div class="w-25 m-auto">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

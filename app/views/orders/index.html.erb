@@ -1,0 +1,39 @@
+<h1 class="text-center">Orders</h1>
+
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Index</th>
+    <th>Product Name</th>
+    <th>Customer Name</th>
+    <th>Status</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+    <th>Action</th>
+  </tr>
+  <% @orders.each_with_index do |order, inx| %>
+    <tr>
+      <td><%= inx+1 %></td>
+      <td><%= order.product.title %></td>
+      <td><%= order.user.username %></td>
+      <td>
+        <div class="d-inline badge text-dark">
+          <% if order.status == "Booked" %>
+            <i class='bi bi-circle-fill success'></i>
+          <% else %>
+            <i class='bi bi-circle-fill danger'></i>
+          <% end %>
+          <%= order.status %>
+        </div>
+      </td>
+      <td><%= order.quantity %></td>
+      <td><%= order.total_price %></td>
+      <td><%= link_to 'Show', order_path(order), class: "text-decoration-none text-light btn btn-info me-2" %>
+      <% if current_user&.Admin? %>  
+        <%= link_to 'Edit', edit_product_order_path(id: order.id, product_id: order.product_id), class: "text-decoration-none text-dark btn btn-warning me-2" %>
+        <%= link_to "Destroy", order_path(order), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %>
+      <% end %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br><br><br>

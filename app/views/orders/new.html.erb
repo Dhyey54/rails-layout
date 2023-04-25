@@ -1,0 +1,3 @@
+<h1 class="text-center m-4 h1">New Order</h1>
+
+<%= render partial: "form", locals: { user_id: current_user.id, order: @order, url: product_orders_path } %>
