@@ -1,0 +1,74 @@
+<div class="container w-50">
+  <%= form_with model: employee do |form| %>
+    <%= render "error" %>
+    <div class="row py-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :employee_name, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :employee_name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :email, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.email_field :email, class: "form-control" %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :password, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.password_field :password, class: "form-control" %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :gender, class: "form-check-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.radio_button :gender, Employee::genders.keys[0], class: "form-check-input" %>Male
+        <%= form.radio_button :gender, Employee::genders.keys[1], class: "form-check-input" %>Female<br>
+      </div>
+    </div>
+
+    <%= form.collection_check_boxes :hobbies, Employee::hobbies.keys, :to_s , :to_s %>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :birth_date, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.date_field :birth_date, class: "form-control" %><br>
+      </div>
+    </div> 
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :address, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_area :address, class: "form-control" %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :mobile_number, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.number_field :mobile_number, class: "form-control" %><br>
+      </div>
+    </div>
+
+    <div class="w-25 m-auto">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

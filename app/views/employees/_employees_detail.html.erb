@@ -1,0 +1,30 @@
+<table class="table w-75 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Hobbies</th>
+    <th>Address</th>
+    <th>Mobile Number</th>
+    <th>Birthdate</th>
+    <th>Uploaded File</th>
+    <% if controller.action_name %><th>Action</th><% end %>
+  </tr>
+  <% employees.each_with_index do |employee, inx| %>
+    <tr>
+      <td><%= inx+1 %></td>
+      <td><%= employee.employee_name %></td>
+      <td><%= employee.email %></td>
+      <td><%= employee.gender %></td>
+      <td><%= employee.hobbies %></td>
+      <td><%= employee.address %></td>
+      <td><%= employee.mobile_number %></td>
+      <td><%= employee.birth_date %></td>
+      <td><%= employee.document %></td>
+      <% if controller.action_name %><td><%= link_to 'Show', employee_path(employee), class: "text-decoration-none text-light btn btn-info me-2" %>
+      <%= link_to 'Edit', edit_employee_path(employee), class: "text-decoration-none text-dark btn btn-warning me-2" %>
+      <%= link_to "Destroy", employee_path(employee), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
+    </tr><% end %>
+  <% end %>
+</table>

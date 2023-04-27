@@ -1,0 +1,24 @@
+<h1 class="text-center m-4 h1">Employees</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Hobbies</th>
+    <th>Address</th>
+    <th>Mobile Number</th>
+    <th>Birthdate</th>
+    <th>Uploaded File</th>
+  </tr>
+
+  <tr>
+    <td><%= @employee.employee_name %></td>
+    <td><%= @employee.email %></td>
+    <td><%= @employee.gender %></td>
+    <td><%= @employee.hobbies %></td>
+    <td><%= @employee.address %></td>
+    <td><%= @employee.mobile_number %></td>
+    <td><%= @employee.birth_date %></td>
+    <td><%= @employee.document %></td>
+  </tr>
+</table>

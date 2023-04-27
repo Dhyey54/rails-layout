@@ -1,0 +1,7 @@
+<%= render 'search_bar' %>
+
+<h1 class="text-center m-4 h1">Employees</h1>
+
+<%= link_to 'New Employee', new_employee_path, class: "text-decoration-none text-dark btn btn-warning me-2" %>
+<%= render "employees_detail", employees: @employees %>
+
