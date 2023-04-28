@@ -13,6 +13,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.create(employee_params)
+    get_filename(@employee)
     if @employee.save
       redirect_to @employee
     else
@@ -24,8 +25,8 @@ class EmployeesController < ApplicationController
   end
   
   def update
-    # binding.pry
     if @employee.update(employee_params)
+      get_filename(@employee)
       redirect_to @employee
     else
       render :edit, status: :unprocessable_entity
@@ -40,7 +41,6 @@ class EmployeesController < ApplicationController
 
   def search
     @employees = Employee.where('employee_name LIKE ?', "%#{params[:query]}%")
-    puts @employees
     if @employees.nil?
       redirect_to employees_path
     else
@@ -50,7 +50,11 @@ class EmployeesController < ApplicationController
 
   private
   def employee_params
-    params.require(:employee).permit(:id, :employee_name, :email, :password, :gender, { hobbies: [] }, :address, :mobile_number, :birth_date, :document, :query)
+    params.require(:employee).permit(:id, :employee_name, :email, :password, :gender, :address, :mobile_number, :birth_date, :document, :query, hobbies: [])
+  end
+
+  def get_filename(employee)
+    employee.update(document: employee_params[:document].original_filename)
   end
 
   def employee_details

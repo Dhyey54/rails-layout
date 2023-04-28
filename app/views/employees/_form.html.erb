@@ -5,7 +5,7 @@
       <div class="col-6 col-sm-3">
         <%= form.label :employee_name, class: "form-label" %>
       </div>
-      <div class="col-6 col-sm-3">
+      <div class="col-6 col-sm-6">
         <%= form.text_field :employee_name, class: "form-control" %>
       </div>
     </div>
@@ -14,17 +14,8 @@
       <div class="col-6 col-sm-3">
         <%= form.label :email, class: "form-label" %>
       </div>
-      <div class="col-6 col-sm-3">
+      <div class="col-6 col-sm-6">
         <%= form.email_field :email, class: "form-control" %><br>
-      </div>
-    </div>
-
-    <div class="row pb-3">
-      <div class="col-6 col-sm-3">
-        <%= form.label :password, class: "form-label" %>
-      </div>
-      <div class="col-6 col-sm-3">
-        <%= form.password_field :password, class: "form-control" %><br>
       </div>
     </div>
 
@@ -32,14 +23,44 @@
       <div class="col-6 col-sm-3">
         <%= form.label :gender, class: "form-check-label" %>
       </div>
-      <div class="col-6 col-sm-3">
+      <div class="col-6 col-sm-6">
         <%= form.radio_button :gender, Employee::genders.keys[0], class: "form-check-input" %>Male
         <%= form.radio_button :gender, Employee::genders.keys[1], class: "form-check-input" %>Female<br>
       </div>
     </div>
 
-    <%= form.collection_check_boxes :hobbies, Employee::hobbies.keys, :to_s , :to_s %>
+    <% if controller.action_name == "new" %>
+      <div class="row pb-3">
+        <div class="col-6 col-sm-3">
+          <%= form.label :password, class: "form-label" %>
+        </div>
+        <div class="col-6 col-sm-6">
+          <%= form.password_field :password, class: "form-control" %><br>
+        </div>
+      </div>
+    <% end %>
 
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :hobbies, class: "form-check-label" %>
+      </div>
+      <div class="col-6 col-sm-6">
+        <% Employee::HOBBY.each do |key| %>
+          <%= form.check_box :hobbies, { multiple: true, checked: form.object.hobbies&.include?(key.to_s) }, key, nil %>
+          <%= form.label key %>
+        <% end %>
+        
+        <%# form.collection_check_boxes :hobbies, Employee::HOBBY.each, :to_s , :to_s %>
+        <br>
+      </div>
+    </div>
+    
+    
+    <%# Employee::HOBBY.each do |key| %>
+      <%# form.check_box :hobbies, { multiple: true }, key, nil %>
+      <%# form.label key %>
+    <%# end %>
+    
     <div class="row pb-3">
       <div class="col-6 col-sm-3">
         <%= form.label :birth_date, class: "form-label" %>
@@ -53,7 +74,7 @@
       <div class="col-6 col-sm-3">
         <%= form.label :address, class: "form-label" %>
       </div>
-      <div class="col-6 col-sm-3">
+      <div class="col-6 col-sm-5">
         <%= form.text_area :address, class: "form-control" %><br>
       </div>
     </div>
@@ -62,8 +83,17 @@
       <div class="col-6 col-sm-3">
         <%= form.label :mobile_number, class: "form-label" %>
       </div>
-      <div class="col-6 col-sm-3">
+      <div class="col-6 col-sm-4">
         <%= form.number_field :mobile_number, class: "form-control" %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3">
+      <div class="col-6 col-sm-3">
+        <%= form.label :document, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-4">
+        <%= form.file_field :document, { multiple: true } %><br>
       </div>
     </div>
 

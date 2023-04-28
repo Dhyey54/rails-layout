@@ -10,6 +10,8 @@
   User.create(username: "User#{u+1}", email: "user#{u+1}@gmail.com", password: '112233', role: rand(0..1))
 end
 
+User.create(username: "dhyey", email: "dhyey@gmail.com", password: "112233", role: "Admin")
+
 10.times do |p|
   Product.create(title: "Product #{p+1}", description: "It is the description of #{p} commodity", price: rand(500..10_000).ceil(-3))
 end

@@ -5,7 +5,7 @@ class CreateEmployees < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :password
       t.integer :gender
-      t.integer :hobbies, array: true, default: []
+      t.string :hobbies, array: true, default: []
       t.text :address
       t.bigint :mobile_number
       t.date :birth_date
