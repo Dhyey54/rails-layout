@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum :role, %w[Admin Merchant]
+  enum :role, %w[Admin Merchant Employee]
 
   validates :role, presence: true
   validates_uniqueness_of :username, on: :create, message: "has already been taken"

@@ -1,4 +1,5 @@
-<table class="table w-75 table-bordered table-striped table-hover m-auto text-center">
+<div class="row justify-content-center">
+  <div class="col-md-10"><table class="table table-bordered table-striped table-hover text-center">
   <tr>
     <th>Id</th>
     <th>Name</th>
@@ -17,7 +18,9 @@
       <td><%= employee.employee_name %></td>
       <td><%= employee.email %></td>
       <td><%= employee.gender %></td>
-      <td><%= employee.hobbies %></td>
+      <td><% employee.hobbies.each do |em| %>
+      <%= em %>
+      <% end %></td>
       <td><%= employee.address %></td>
       <td><%= employee.mobile_number %></td>
       <td><%= employee.birth_date %></td>
@@ -27,4 +30,5 @@
       <%= link_to "Destroy", employee_path(employee), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
     </tr><% end %>
   <% end %>
-</table>
+</table></div>
+</div>

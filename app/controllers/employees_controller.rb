@@ -9,12 +9,13 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
+    @employee.build_addresses
   end
 
   def create
-    @employee = Employee.create(employee_params)
-    get_filename(@employee)
+    @employee = Employee.new(employee_params)
     if @employee.save
+      get_filename(@employee)
       redirect_to @employee
     else
       render :new, status: :unprocessable_entity
@@ -36,7 +37,7 @@ class EmployeesController < ApplicationController
   def destroy
     @employee.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to employees_path, status: :see_other
   end
 
   def search
@@ -50,7 +51,7 @@ class EmployeesController < ApplicationController
 
   private
   def employee_params
-    params.require(:employee).permit(:id, :employee_name, :email, :password, :gender, :address, :mobile_number, :birth_date, :document, :query, hobbies: [])
+    params.require(:employee).permit(:id, :employee_name, :email, :password, :gender, :address, :mobile_number, :birth_date, :document, :query, addresses_attributes: [:id, :house_name, :street_name, :road] , hobbies: [])
   end
 
   def get_filename(employee)

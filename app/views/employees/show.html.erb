@@ -15,7 +15,9 @@
     <td><%= @employee.employee_name %></td>
     <td><%= @employee.email %></td>
     <td><%= @employee.gender %></td>
-    <td><%= @employee.hobbies %></td>
+    <td><% @employee.hobbies.each do |em| %>
+      <%= em %>
+    <% end %></td>
     <td><%= @employee.address %></td>
     <td><%= @employee.mobile_number %></td>
     <td><%= @employee.birth_date %></td>
