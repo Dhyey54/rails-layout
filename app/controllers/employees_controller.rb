@@ -11,7 +11,7 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
-    @employee.build_addresses
+    @employee.addresses.new
   end
 
   def create
@@ -23,10 +23,10 @@ class EmployeesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
- 
+
   def edit
   end
-  
+
   def update
     if @employee.update(employee_params)
       get_filename(@employee)
