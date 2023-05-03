@@ -1,4 +1,4 @@
-<h1 class="text-center m-4 h1">Employees</h1>
+<h1 class="text-center m-4 h1">Employee</h1>
 <table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
   <tr>
     <th>Name</th>
@@ -24,3 +24,7 @@
     <td><%= @employee.document %></td>
   </tr>
 </table>
+
+<br><br>
+
+<%= render "employee_addresses", employee_addresses: @employee.addresses %>
