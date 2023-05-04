@@ -24,8 +24,7 @@ class EmployeesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @employee.update(employee_params)
@@ -52,6 +51,7 @@ class EmployeesController < ApplicationController
   end
 
   private
+
   def employee_params
     params.require(:employee).permit(:id, :employee_name, :email, :password, :gender, :address, :mobile_number, :birth_date, :document, :query, addresses_attributes: [:id, :house_name, :street_name, :road] , hobbies: [])
   end
