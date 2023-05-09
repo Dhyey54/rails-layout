@@ -14,6 +14,7 @@ gem "pg"
 
 gem "devise"
 
+# Use pry for runtime developer console
 gem "pry"
 
 # Use the Puma web server [https://github.com/puma/puma]

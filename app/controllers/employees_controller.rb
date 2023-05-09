@@ -1,17 +1,15 @@
 class EmployeesController < ApplicationController
-  before_action :employee_details, only: %i[edit update destroy]
+  before_action :employee_details, only: %i[show edit update destroy]
 
   def index
     @employees = Employee.order(:id)
   end
- 
-  def show
-    @employee = Employee.includes(:addresses).find(params[:id])
-  end
+
+  def show; end
 
   def new
     @employee = Employee.new
-    @employee.addresses.new
+    @employee.addresses.build
   end
 
   def create

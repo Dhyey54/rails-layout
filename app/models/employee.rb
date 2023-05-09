@@ -3,13 +3,12 @@ class Employee < ApplicationRecord
 
   accepts_nested_attributes_for :addresses
 
-  enum :gender, %w[Male Female]
-  HOBBY = %i[Dancing Singing Travelling]
+  enum :gender, %i[male female]
+  HOBBY = %i[Dancing Singing Travelling].freeze
 
   validates :employee_name, :email, :password, :gender, :hobbies, :address, :mobile_number, :birth_date, :document, presence: true
   validates :mobile_number, length: { is: 10 }
-  validates :employee_name, uniqueness: true
-  validates :email, uniqueness: true
+  validates :employee_name, :email, uniqueness: true
   validates :password, length: { minimum: 6 }
 
   before_create :create_user
@@ -18,7 +17,7 @@ class Employee < ApplicationRecord
   private
 
   def create_user
-    User.new({username: employee_name, email: email, password: password, password_confirmation: password, role: "Employee"}).save unless User.exists?(username: employee_name)
+    User.create(username: employee_name, email: email, password: password, password_confirmation: password, role: "Employee") unless User.exists?(username: employee_name)
   end
 
   def destroy_user
