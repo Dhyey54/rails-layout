@@ -2,9 +2,8 @@
 
 <h1 class="text-center m-4 h1">Employees</h1>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mb-3">
   <%= link_to 'New Employee', new_employee_path, class: "text-decoration-none text-dark btn btn-warning" %>
 </div>
-<br><br>
 
 <%= render "employees_detail", employees: @employees %>

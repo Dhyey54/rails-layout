@@ -17,7 +17,7 @@ class Employee < ApplicationRecord
   private
 
   def create_user
-    User.create(username: employee_name, email: email, password: password, password_confirmation: password, role: "Employee") unless User.exists?(username: employee_name)
+    User.create(username: employee_name, email: email, password: password, password_confirmation: password, role: "employee") unless User.exists?(username: employee_name)
   end
 
   def destroy_user
