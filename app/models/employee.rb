@@ -4,7 +4,7 @@ class Employee < ApplicationRecord
   accepts_nested_attributes_for :addresses
 
   enum :gender, %i[male female]
-  HOBBY = %i[Dancing Singing Travelling].freeze
+  HOBBY = %i[dancing singing travelling].freeze
 
   validates :employee_name, :email, :password, :gender, :hobbies, :address, :mobile_number, :birth_date, :document, presence: true
   validates :mobile_number, length: { is: 10 }

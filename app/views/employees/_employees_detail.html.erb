@@ -20,7 +20,7 @@
           <td><%= employee.email %></td>
           <td><%= employee.gender.capitalize %></td>
           <td><% employee.hobbies.each do |em| %>
-          <%= em %>
+          <%= em.capitalize %>
           <% end %></td>
           <td><%= employee.address %></td>
           <td><%= employee.mobile_number %></td>

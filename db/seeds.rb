@@ -21,5 +21,5 @@ end
 end
 
 10.times do |em|
-  Employee.create(employee_name: "Employee#{em + 1}", email: "employee#{em}@gmail.com", password: '112233', gender: rand(0..1), hobbies: %w[Dancing Travelling Singing],address: "Office", mobile_number: rand(1_000_000_000..9_999_999_999), birth_date: rand(Date.yesterday-90.year..Date.yesterday), document: 'employee.pdf')
+  Employee.create(employee_name: "Employee#{em + 1}", email: "employee#{em}@gmail.com", password: '112233', gender: rand(0..1), hobbies: %w[dancing travelling singing], address: "Office", mobile_number: rand(1_000_000_000..9_999_999_999), birth_date: rand(Date.yesterday-90.year..Date.yesterday), document: 'employee.pdf')
 end
