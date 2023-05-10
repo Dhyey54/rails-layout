@@ -20,16 +20,17 @@
           <td><%= employee.email %></td>
           <td><%= employee.gender.capitalize %></td>
           <td><% employee.hobbies.each do |em| %>
-          <%= em.capitalize %>
+            <%= em.capitalize %>
           <% end %></td>
           <td><%= employee.address %></td>
           <td><%= employee.mobile_number %></td>
           <td><%= employee.birth_date %></td>
           <td><%= employee.document %></td>
           <% if controller.action_name == "index" %><td><%= link_to 'Show', employee_path(employee), class: "text-decoration-none text-light btn btn-info me-2" %>
-          <%= link_to 'Edit', edit_employee_path(employee), class: "text-decoration-none text-dark btn btn-warning me-2" %>
-          <%= link_to "Destroy", employee_path(employee), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
-        </tr><% end %>
+            <%= link_to 'Edit', edit_employee_path(employee), class: "text-decoration-none text-dark btn btn-warning me-2" %>
+            <%= link_to "Destroy", employee_path(employee), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %></td>
+          <% end %>
+        </tr>
       <% end %>
     </table>
   </div>
