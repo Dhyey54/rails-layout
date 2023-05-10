@@ -1,0 +1,125 @@
+<div class="container justify-content-center">
+  <%= form_with model: employee do |form| %>
+    <%= render "error" %>
+    <div class="row py-3 justify-content-center">
+      <div class="col-6 col-sm-3">
+        <%= form.label :employee_name, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_field :employee_name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row pb-3 justify-content-center">
+      <div class="col-6 col-sm-3">
+        <%= form.label :email, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.email_field :email, class: "form-control" %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3 justify-content-center">
+      <div class="col-6 col-sm-3">
+        <%= form.label :gender, class: "form-check-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.radio_button :gender, Employee::genders.keys[0], class: "form-check-input" %>Male
+        <%= form.radio_button :gender, Employee::genders.keys[1], class: "form-check-input" %>Female<br>
+      </div>
+    </div>
+
+    <% unless controller.action_name == "edit" %>
+      <div class="row pb-3 justify-content-center">
+        <div class="col-6 col-sm-3">
+          <%= form.label :password, class: "form-label" %>
+        </div>
+        <div class="col-6 col-sm-3">
+          <%= form.password_field :password, class: "form-control" %><br>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row pb-3 justify-content-center">
+      <div class="col-6 col-sm-3">
+        <%= form.label :hobbies, class: "form-check-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <% Employee::HOBBY.each do |key| %>
+          <%= form.check_box :hobbies, { multiple: true, checked: form.object.hobbies.include?(key.to_s) }, key, nil %>
+          <%= form.label key %>
+        <% end %>
+        <%# form.collection_check_boxes :hobbies, Employee::HOBBY.each, :to_s , :to_s %>
+      </div>
+    </div><br>
+    
+    <div class="row pb-3 justify-content-center">
+      <div class="col-6 col-sm-3">
+        <%= form.label :birth_date, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.date_field :birth_date, class: "form-control" %><br>
+      </div>
+    </div> 
+
+    <div class="row pb-3 justify-content-center">
+      <div class="col-6 col-sm-3">
+        <%= form.label :address, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.text_area :address, class: "form-control" %><br>
+      </div>
+    </div>
+
+    <%= form.fields_for :addresses do |address| %>
+      <div class="row pb-3 justify-content-center">
+        <div class="col-6 col-sm-3">
+          <%= address.label :house_name, class: "form-label" %>
+        </div>
+        <div class="col-6 col-sm-3">
+          <%= address.text_field :house_name, class: "form-control" %><br>
+        </div>
+      </div>
+
+      <div class="row pb-3 justify-content-center">
+        <div class="col-6 col-sm-3">
+          <%= address.label :street_name, class: "form-label" %>
+        </div>
+        <div class="col-6 col-sm-3">
+          <%= address.text_field :street_name, class: "form-control" %><br>
+        </div>
+      </div>
+
+      <div class="row pb-3 justify-content-center">
+        <div class="col-6 col-sm-3">
+          <%= address.label :road, class: "form-label" %>
+        </div>
+        <div class="col-6 col-sm-3">
+          <%= address.text_field :road, class: "form-control" %><br>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row pb-3 justify-content-center">
+      <div class="col-6 col-sm-3">
+        <%= form.label :mobile_number, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.number_field :mobile_number, class: "form-control" %><br>
+      </div>
+    </div>
+
+    <div class="row pb-3 justify-content-center">
+      <div class="col-6 col-sm-3">
+        <%= form.label :document, class: "form-label" %>
+      </div>
+      <div class="col-6 col-sm-3">
+        <%= form.file_field :document, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="w-25 mx-auto">
+      <%= form.submit class: "btn btn-success" %>
+    </div><br>
+  <% end %>
+</div>

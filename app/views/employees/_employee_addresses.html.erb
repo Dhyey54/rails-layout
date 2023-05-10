@@ -1,0 +1,18 @@
+<h1 class="text-center m-4 h1">Employee Addresses</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>No.</th>
+    <th>House Name</th>
+    <th>Street Name</th>
+    <th>Road</th>
+  </tr>
+
+  <% employee_addresses.each_with_index do |employee, inx| %>
+    <tr>
+      <td><%= inx+1 %></td>
+      <td><%= employee.house_name %></td>
+      <td><%= employee.street_name %></td>
+      <td><%= employee.road %></td>
+    </tr>
+  <% end %>
+</table>

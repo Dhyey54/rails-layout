@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: %i[index show destroy]
+
+  resources :employees do
+    get 'search', on: :collection
+  end
 end

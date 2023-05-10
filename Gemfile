@@ -15,6 +15,9 @@ gem "pg", "~> 1.1"
 # Using devise for user authentication
 gem "devise"
 
+# Use pry for runtime developer console
+gem "pry"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
