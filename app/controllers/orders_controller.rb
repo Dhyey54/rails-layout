@@ -1,8 +1,5 @@
 class OrdersController < ApplicationController
-  layout :orders_layout
-
   before_action :order_details, only: %i[edit update show destroy]
-  before_action :product_details
 
   def index
     @orders = Order.includes(:product, :user).order(:id)
@@ -11,7 +8,7 @@ class OrdersController < ApplicationController
   def show; end
 
   def new
-    @order = Order.new
+    @order = Product.find(params[:product_id]).orders.new(user_id: current_user.id)
   end
 
   def edit; end
@@ -20,7 +17,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     if @order.save
-      redirect_to orders_path
+      redirect_to products_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,13 +45,5 @@ class OrdersController < ApplicationController
 
   def order_details
     @order = Order.find(params[:id])
-  end
-
-  def product_details
-    @products = Product.select(:id, :title)
-  end
-
-  def orders_layout
-    current_user&.Admin? ? 'admin' : 'merchant'
   end
 end

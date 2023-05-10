@@ -4,9 +4,9 @@ class Order < ApplicationRecord
 
   before_save :total_price_order
 
-  enum :status, ["Booked", "Canceled"]
+  enum :status, %i[booked canceled]
 
-  validates :quantity, :status, :product_id, :user_id, presence: true
+  validates :quantity, :status, presence: true
 
   private
   def total_price_order

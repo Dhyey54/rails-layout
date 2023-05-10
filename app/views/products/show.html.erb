@@ -27,12 +27,12 @@
       <td><%= order.user.username %></td>
       <td>
         <div class="d-inline badge text-dark">
-          <% if order.status == "Booked" %>
+          <% if order.status == "booked" %>
             <i class='bi bi-circle-fill success'></i>
           <% else %>
             <i class='bi bi-circle-fill danger'></i>
           <% end %>
-          <%= order.status %>
+          <%= order.status.capitalize %>
         </div>
       </td>
       <td><%= order.quantity %></td>

@@ -1,6 +1,4 @@
 class ProductsController < ApplicationController
-  layout :products_layout
-
   before_action :product_details, only: %i[edit update show destroy]
 
   def index
@@ -49,9 +47,5 @@ class ProductsController < ApplicationController
 
   def product_details
     @product = Product.find(params[:id])
-  end
-
-  def products_layout
-    current_user&.Admin? ? 'admin' : 'merchant'
   end
 end
