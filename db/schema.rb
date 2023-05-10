@@ -10,6 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema[7.0].define(version: 2023_04_29_063611) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "house_name"
+    t.string "street_name"
+    t.string "road"
+    t.bigint "employee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_addresses_on_employee_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "employee_name"
+    t.string "email"
+    t.string "password"
+    t.integer "gender"
+    t.string "hobbies", default: [], array: true
+    t.text "address"
+    t.bigint "mobile_number"
+    t.date "birth_date"
+    t.string "document"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+=======
 ActiveRecord::Schema[7.0].define(version: 2023_04_26_062254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_062254) do
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+>>>>>>> rails-layout-and-rendering
   end
 
   create_table "orders", force: :cascade do |t|
@@ -62,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_062254) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "employees"
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
 end
