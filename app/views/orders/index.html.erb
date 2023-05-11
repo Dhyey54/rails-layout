@@ -28,7 +28,7 @@
       <td><%= order.quantity %></td>
       <td><%= order.total_price %></td>
       <td><%= link_to 'Show', order_path(order), class: "text-decoration-none text-light btn btn-info me-2" %>
-      <% if current_user&.Admin? %>  
+      <% if current_user.admin? %>  
         <%= link_to 'Edit', edit_product_order_path(id: order.id, product_id: order.product_id), class: "text-decoration-none text-dark btn btn-warning me-2" %>
         <%= link_to "Destroy", order_path(order), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-light btn btn-danger" %>
       <% end %></td>

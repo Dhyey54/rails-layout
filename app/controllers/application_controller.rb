@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  layout :controller_layout
-  
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
 
@@ -11,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def controller_layout
-    current_user&.Admin? ? 'admin' : 'merchant'
+    current_user.admin? ? 'admin' : 'merchant'
   end
 end

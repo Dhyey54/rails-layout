@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  layout :controller_layout
+
   before_action :product_details, only: %i[edit update show destroy]
 
   def index
