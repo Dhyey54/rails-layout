@@ -17,7 +17,6 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.turbo_stream
       end
-      redirect_to posts_path
     else
       render :new, status: :unprocessable_entity
     end
