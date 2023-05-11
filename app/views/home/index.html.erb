@@ -1,0 +1,21 @@
+<h2 class="text-center mt-5"> Home Page </h2>
+<% unless user_signed_in? %>
+  <table class="table table-info table-striped-columns w-25 text-dark mx-auto">
+    <tr>
+      <th>Actions</th>
+    </tr>
+    <tr>
+      <td>
+        <%= link_to 'Sign In', new_user_session_path , class: "text-decoration-none text-dark btn" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= link_to 'Sign Up', new_user_registration_path, class: "text-decoration-none text-dark btn" %>
+      </td>
+    </tr>
+  </table>
+  <% else %>
+    <h5 class="text-center">Welcome <%= current_user.username %></h5>
+    <p class="text-center">This is the home page for our project.</p>
+<% end %>

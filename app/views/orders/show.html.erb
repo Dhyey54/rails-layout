@@ -1,0 +1,26 @@
+<h1 class="text-center m-4 h1">Order</h1>
+<table class="table w-50 table-bordered table-striped table-hover m-auto text-center">
+  <tr>
+    <th>Product Name</th>
+    <th>Customer Name</th>
+    <th>Status</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+  </tr>
+  <tr>
+    <td><%= @order.product.title %></td>
+    <td><%= @order.user.username %></td>
+    <td>
+      <div class="d-inline badge text-dark">
+          <% if @order.booked? %>
+            <i class='bi bi-circle-fill success'></i>
+          <% else %>
+            <i class='bi bi-circle-fill danger'></i>
+          <% end %>
+          <%= @order.status.capitalize %>
+        </div>
+      </td>
+    <td><%= @order.quantity %></td>
+    <td><%= @order.total_price %></td>
+  </tr>
+</table>
