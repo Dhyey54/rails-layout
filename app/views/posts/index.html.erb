@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div class="header">
+    <h1 class="text-center">Posts</h1>
+    <%= link_to "New post",
+                new_post_path,
+                class: "btn btn-success",
+                data: { turbo_frame: dom_id(Post.new), action: "click->hello#greet" } %>
+  </div>
+  
+  <br>
+  <%= turbo_frame_tag Post.new %>
+  
+  <%= turbo_frame_tag "posts" do %>
+    <%= render @posts %>
+  <% end %>
+</div>

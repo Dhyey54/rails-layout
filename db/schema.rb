@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.0].define(version: 2023_04_29_063611) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_11_113633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +22,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_29_063611) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_addresses_on_employee_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -37,24 +46,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_29_063611) do
     t.string "document"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-=======
-ActiveRecord::Schema[7.0].define(version: 2023_04_26_062254) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  end
 
-  create_table "admins", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+  create_table "likes", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
->>>>>>> rails-layout-and-rendering
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -67,6 +67,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_062254) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_orders_on_product_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -92,6 +101,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_062254) do
   end
 
   add_foreign_key "addresses", "employees"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "posts", "users"
 end

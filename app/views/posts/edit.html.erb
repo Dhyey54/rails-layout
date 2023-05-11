@@ -1,0 +1,11 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to post"), post_path(@post) %>
+
+  <div class="header">
+    <h1>Edit post</h1>
+  </div>
+
+  <%= turbo_frame_tag @post do %>
+    <%= render "form", post: @post %>
+  <% end %>
+</main>

@@ -1,0 +1,13 @@
+<%= turbo_frame_tag comment do %>
+  <div class="border p-3">
+    <p>Comment: <%= comment.content %></p>
+    <p>Commented By: <%= comment.user.username %></p>
+
+    <div class="comment_actions">
+      <%= link_to "Delete",
+                    post_comment_path(comment.post, comment),
+                    data: { turbo_method: :delete, turbo_frame: "comments" },
+                    class: "btn btn-danger" %>
+    </div>
+  </div>
+<% end %>

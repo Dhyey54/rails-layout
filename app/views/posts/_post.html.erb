@@ -1,0 +1,33 @@
+<%= turbo_frame_tag post do %>
+  <hr>
+  <div class="post d-flex justify-content-between">
+    <div class="post-description col-7">
+      <p class="d-inline fs-4">Title:
+      <span class="text-dark text-decoration-none fs-4"><%= post.title %></span></p>
+
+      <p>
+        <b class="d-inline">Description:</b>
+        <%= post.description %>
+      </p>
+      <p>Likes:<%= post.likes.count %></p>
+      <%= link_to 'Like', like_post_path(post), class: 'btn' %>
+      <%= link_to 'Dislike', dislike_post_path(post), data: { turbo_method: :delete },  class: 'btn' %>
+      <%= link_to 'Comments', post_comments_path(post), data: { turbo_frame: "comments_section#{post.id}" },  class: 'btn' %>
+      
+      <div>
+        <%= turbo_frame_tag "comments_section#{post.id}" %>
+      </div>
+
+    </div>
+    <div class="post__actions">
+      <%= link_to "Delete",
+                    post_path(post),
+                    data: {turbo_method: :delete},
+                    class: "btn btn-danger" %>
+      <%= link_to "Edit",
+                  edit_post_path(post),
+                  class: "btn btn-warning" %>
+    </div>
+  </div>
+  <br>
+<% end %>
