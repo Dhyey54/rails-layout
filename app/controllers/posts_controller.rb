@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy like dislike]
 
   def index
-    @posts = Post.order(id: :desc)
+    @posts = Post.includes(:likes).order(id: :desc)
   end
 
   def show; end

@@ -9,9 +9,9 @@
         <b class="d-inline">Description:</b>
         <%= post.description %>
       </p>
-      <p>Likes:<%= post.likes.count %></p>
+      <p>Likes:<%= post.likes.length %></p>
       <% if post_liked?(post, current_user) %>
-        <%= link_to 'Dislike', dislike_post_path(post), data: { turbo_method: :delete },  class: 'btn' %>
+        <%= link_to 'Dislike', dislike_post_path(post), data: { turbo: true, turbo_method: :delete },  class: 'btn' %>
       <% else %>
         <%= link_to 'Like', like_post_path(post), class: 'btn' %>
       <% end %>
