@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[destroy]
-  before_action :current_post, only: %i[index new]
+  before_action :current_post, only: %i[index new create]
 
   def index
-    @comments = Post.find(params[:post_id]).comments.order(id: :desc)
+    @comments = current_post.comments.order(id: :desc)
   end
 
   def new
@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Post.find(params[:post_id]).comments.new(comment_params)
+    @comment = current_post.comments.new(comment_params)
 
     if @comment.save
       respond_to do |format|
