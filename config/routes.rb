@@ -14,4 +14,12 @@ Rails.application.routes.draw do
   resources :employees do
     get 'search', on: :collection
   end
+
+  resources :posts do
+    resources :comments
+    member do
+      get 'like'
+      delete 'dislike'
+    end
+  end
 end

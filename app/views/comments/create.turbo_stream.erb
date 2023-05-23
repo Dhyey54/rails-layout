@@ -1,0 +1,4 @@
+<%= turbo_stream.prepend "comments" do %>
+  <%= render @comment %>
+<% end %>
+<%= turbo_stream.update Comment.new, "" %>

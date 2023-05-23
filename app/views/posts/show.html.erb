@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+
+<div>
+  <%= turbo_frame_tag "comments_section#{@post.id}" %>
+</div>
+
+<div>
+  <%= link_to "Back to posts", posts_path %>
+</div>
